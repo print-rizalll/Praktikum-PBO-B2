@@ -7,10 +7,10 @@ class JenisLayanan:
     kategori_valid = ["Logo", "Banner", "Ilustrasi", "UI/UX", "Konten Sosmed"]
 
     def __init__(self, nama_layanan, kategori, harga_dasar, estimasi_hari):
-        self.nama_layanan = nama_layanan   # public
-        self.kategori = kategori           # public
-        self.estimasi_hari = estimasi_hari  # public
-        self.__harga_dasar = harga_dasar   # private
+        self.nama_layanan = nama_layanan
+        self.kategori = kategori
+        self.estimasi_hari = estimasi_hari
+        self.__harga_dasar = harga_dasar
         JenisLayanan.total_layanan_terdaftar += 1
 
     @property
@@ -55,18 +55,16 @@ class JenisLayanan:
 
 class Desainer:
     """Seorang desainer grafis di Desaignkan_id."""
-
-    # Atribut kelas
     nama_instansi = "Desaignkan_id"
     total_desainer = 0
     level_default = "Junior"
 
     def __init__(self, nama, spesialisasi, rating_awal=5.0):
-        self.nama = nama                     # public
-        self.spesialisasi = spesialisasi     # public
-        self.level = Desainer.level_default  # public
-        self.__rating = rating_awal          # private
-        self.__pesanan_selesai = 0           # private
+        self.nama = nama
+        self.spesialisasi = spesialisasi
+        self.level = Desainer.level_default
+        self.__rating = rating_awal
+        self.__pesanan_selesai = 0
         Desainer.total_desainer += 1
 
     @property
@@ -113,13 +111,13 @@ class Pesanan:
     status_valid = ["Menunggu", "Diproses", "Selesai", "Dibatalkan"]
 
     def __init__(self, id_pesanan, nama_pelanggan, layanan, desainer, is_member=False):
-        self.id_pesanan = id_pesanan          # public
-        self.nama_pelanggan = nama_pelanggan  # public
-        self.layanan = layanan                # public, objek JenisLayanan
-        self.desainer = desainer              # public, objek Desainer
-        self.is_member = is_member            # public
-        self.__status = "Menunggu"            # private
-        self.__total_bayar = 0                # private
+        self.id_pesanan = id_pesanan
+        self.nama_pelanggan = nama_pelanggan
+        self.layanan = layanan
+        self.desainer = desainer
+        self.is_member = is_member
+        self.__status = "Menunggu"
+        self.__total_bayar = 0
         Pesanan.total_pesanan += 1
 
     @property
@@ -176,7 +174,6 @@ class Pesanan:
         return isinstance(id_pesanan, str) and id_pesanan.startswith("ORD")
 
 
-# ============================ MAIN PROGRAM ============================
 if __name__ == "__main__":
     print("=== DEMO SISTEM MANAJEMEN PESANAN - DESAIGNKAN_ID ===")
 
@@ -221,18 +218,18 @@ if __name__ == "__main__":
 
     print("\n--- Pengujian Getter & Setter ---")
     print("Harga awal logo:", layanan_logo.harga_dasar)
-    layanan_logo.harga_dasar = 300000   # valid
-    layanan_logo.harga_dasar = -50000   # tidak valid
+    layanan_logo.harga_dasar = 300000
+    layanan_logo.harga_dasar = -50000
     print("Harga akhir logo:", layanan_logo.harga_dasar)
 
     print("Rating awal Bima:", desainer_bima.rating)
-    desainer_bima.rating = 4.9   # valid
-    desainer_bima.rating = 7.5   # tidak valid
+    desainer_bima.rating = 4.9
+    desainer_bima.rating = 7.5
     print("Rating akhir Bima:", desainer_bima.rating)
 
     print("Status awal pesanan 2:", pesanan_2.status)
-    pesanan_2.status = "Dibatalkan"  # valid
-    pesanan_2.status = "Kadaluarsa"  # tidak valid
+    pesanan_2.status = "Dibatalkan"
+    pesanan_2.status = "Kadaluarsa"
     print("Status akhir pesanan 2:", pesanan_2.status)
 
     print("\n--- Reset Statistik ---")
