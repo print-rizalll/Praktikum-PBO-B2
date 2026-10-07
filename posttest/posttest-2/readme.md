@@ -12,97 +12,7 @@ Materi yang diterapkan:
 
 ---
 
-## 1. Diagram UML
-
-```mermaid
-classDiagram
-    direction LR
-
-    class Desainer {
-        +nama_instansi$
-        +total_desainer$
-        +level_default$
-        #_nama
-        #_spesialisasi
-        #_level
-        -__rating
-        -__pesanan_selesai
-        +rating
-        +hitung_biaya_tambahan(harga)
-        +tampilkan_profil()
-        +tambah_pesanan_selesai()
-    }
-    class DesainerLogo {
-        +jumlah_konsep
-        +hitung_biaya_tambahan(harga)
-        +tampilkan_profil()
-    }
-    class DesainerIlustrator {
-        +gaya_ilustrasi
-        +hitung_biaya_tambahan(harga)
-        +tampilkan_profil()
-    }
-    class DesainerUIUX {
-        +tools
-        +hitung_biaya_tambahan(harga)
-        +tampilkan_profil()
-        +sapa_tim()
-    }
-    class TimDesain {
-        +nama_tim
-        -__anggota
-        +tambah_anggota(desainer)
-        +keluarkan_anggota(desainer)
-        +bubarkan()
-    }
-    class JenisLayanan {
-        +nama_layanan
-        +kategori
-        +estimasi_hari
-        -__harga_dasar
-        +hitung_harga_setelah_diskon()
-    }
-    class Pelanggan {
-        +nama
-        +is_member
-    }
-    class Pesanan {
-        +id_pesanan
-        -__status
-        -__rincian
-        -__daftar_revisi
-        +proses_pesanan()
-        +selesaikan_pesanan()
-        +tambah_revisi(catatan)
-        +tampilkan_struk()
-    }
-    class RincianBiaya {
-        +harga_layanan
-        +potongan_member
-        +biaya_desainer
-        +ongkos_admin
-        +total
-    }
-    class Revisi {
-        +nomor
-        +catatan
-    }
-
-    Desainer <|-- DesainerLogo
-    Desainer <|-- DesainerIlustrator
-    Desainer <|-- DesainerUIUX
-
-    TimDesain o-- "1..*" Desainer : agregasi
-    Pesanan --> Pelanggan : asosiasi
-    Pesanan --> JenisLayanan : asosiasi
-    Pesanan --> Desainer : asosiasi
-    Pesanan *-- "1" RincianBiaya : komposisi
-    Pesanan *-- "0..*" Revisi : komposisi
-```
-
----
-
-## 2. Struktur Class
+## 1. Struktur Class
 
 Program terdiri dari 10 class. Class lama (`JenisLayanan`, `Desainer`, `Pesanan`) tetap
 dipertahankan dan dikembangkan, lalu ditambah class baru untuk relasi UML dan inheritance.
@@ -119,7 +29,7 @@ dipertahankan dan dikembangkan, lalu ditambah class baru untuk relasi UML dan in
 
 ---
 
-## 3. Penerapan Relasi UML
+## 2. Penerapan Relasi UML
 
 ### a. Asosiasi (Association)
 Hubungan antar objek yang **saling independen**. Objek dibuat di luar, lalu hanya
@@ -163,7 +73,7 @@ revisi = Revisi(nomor, catatan)            # dibuat di dalam method tambah_revis
 
 ---
 
-## 4. Penerapan Inheritance
+## 3. Penerapan Inheritance
 
 ### a. Superclass & Subclass
 - **Superclass:** `Desainer`
@@ -211,7 +121,7 @@ informasi atribut uniknya. Method `Pesanan.proses_pesanan()` memanggil
 
 ---
 
-## 5. Konsep Encapsulation (dari Modul 3)
+## 4. Konsep Encapsulation (dari Modul 3)
 
 - Public — misal `nama_layanan`, `id_pesanan`, `jumlah_konsep`.
 - Protected — `_nama`, `_spesialisasi`, `_level` pada `Desainer`.
@@ -222,7 +132,7 @@ informasi atribut uniknya. Method `Pesanan.proses_pesanan()` memanggil
 
 ---
 
-## 6. Cara Menjalankan Program
+## 5. Cara Menjalankan Program
 
 Pastikan Python 3 sudah terpasang, lalu jalankan dari terminal:
 
@@ -234,7 +144,7 @@ Tidak ada dependency eksternal, program hanya memakai Python standar.
 
 ---
 
-## 7. Panduan Pengujian (Main Code)
+## 6. Panduan Pengujian (Main Code)
 
 Bagian `if __name__ == "__main__":` di `main.py` menjalankan demo berikut secara urut:
 
@@ -266,7 +176,7 @@ Contoh hasil perhitungan yang bisa dicek manual (diskon member 15%, ongkos admin
 
 ---
 
-## 8. Struktur File
+## 7. Struktur File
 
 ```
 .
