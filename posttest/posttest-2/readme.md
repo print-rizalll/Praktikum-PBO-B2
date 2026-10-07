@@ -134,13 +134,25 @@ informasi atribut uniknya. Method `Pesanan.proses_pesanan()` memanggil
 
 ## 5. Cara Menjalankan Program
 
-Pastikan Python 3 sudah terpasang, lalu jalankan dari terminal:
+Program dikembangkan dan dijalankan menggunakan **Visual Studio Code (VS Code)**.
+
+**Persiapan**
+1. Pastikan **Python 3** sudah terpasang (cek di terminal dengan `python --version`).
+2. Pasang ekstensi **Python** (Microsoft) di VS Code lewat menu *Extensions*.
+3. Buka folder proyek lewat *File > Open Folder*, lalu pilih file `main.py`.
+
+**Menjalankan program (pilih salah satu)**
+- **Tombol Run:** klik ikon segitiga *Run Python File* di pojok kanan atas editor.
+- **Terminal VS Code:** buka *Terminal > New Terminal* (`` Ctrl+` ``), lalu jalankan:
 
 ```bash
-python3 main.py
+python main.py
 ```
 
-Tidak ada dependency eksternal, program hanya memakai Python standar.
+> Di Linux/macOS gunakan `python3 main.py`.
+
+Hasil program muncul di panel **Terminal** pada bagian bawah VS Code. Tidak ada dependency
+eksternal, program hanya memakai Python standar.
 
 ---
 
