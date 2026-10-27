@@ -9,7 +9,7 @@ Materi yang diterapkan:
 - Modul 1 — Pengantar OOP, Class, dan Object
 - Modul 2 — Atribut dan Method
 - Modul 3 — Encapsulation
-- Modul 4 — Encapsulation
+- Modul 4 — UML class relationships
 - Modul 5 — Inheritance
 - Modul 6 — Polimorfisme & Abstraksi
 - Modul 7 — SOLID
