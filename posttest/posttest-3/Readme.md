@@ -1,7 +1,7 @@
 # Sistem Manajemen Pesanan Desain Grafis — Desaignkan_id
 
 Program Python berbasis **Object-Oriented Programming (OOP)** untuk mengelola pesanan
-jasa desain grafis pada usaha kreatif fiktif **Desaignkan_id**, berdasarkan jenis layanan
+jasa desain grafis pada usaha kreatif **Desaignkan_id**, berdasarkan jenis layanan
 (logo, banner, UI/UX, dll). Pelanggan membuat pesanan, pesanan dikerjakan oleh desainer
 sesuai spesialisasinya, lalu biaya dihitung otomatis dan struk ditampilkan.
 
@@ -136,7 +136,6 @@ sepenuhnya ditentukan oleh method milik masing-masing objek.
 
 ## 5. Screenshot Output Program
 
-> Jalankan `main.py`, lalu ambil screenshot terminal dan simpan di folder `images/`.
 
 **Bukti abstract class tidak bisa diinstansiasi dan abstract method**
 
@@ -149,6 +148,7 @@ sepenuhnya ditentukan oleh method milik masing-masing objek.
 **Relasi: agregasi, asosiasi, komposisi (struk pesanan)**
 
 ![Output relasi](images/output_relasi.png)
+![Output relasi](images/output_relasi2.png)
 
 ---
 
@@ -180,9 +180,7 @@ Program dikembangkan dan dijalankan menggunakan **Visual Studio Code (VS Code)**
 python main.py
 ```
 
-> Di Linux/macOS gunakan `python3 main.py`.
 
-Tidak ada dependency eksternal, program hanya memakai Python standar.
 
 ---
 
@@ -197,4 +195,5 @@ Tidak ada dependency eksternal, program hanya memakai Python standar.
     ├── output_abstraksi.png   # Screenshot output
     ├── output_polimorfisme.png
     └── output_relasi.png
+    └── output_relasi2.png
 ```
