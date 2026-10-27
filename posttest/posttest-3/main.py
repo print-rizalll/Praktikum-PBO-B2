@@ -30,7 +30,7 @@ class JenisLayanan:
 
     def tampilkan_info(self):
         print(f"Layanan: {self.nama_layanan} ({self.kategori}) - "
-              f"Rp{self.__harga_dasar:,.0f} - estimasi {self.estimasi_hari} hari")
+            f"Rp{self.__harga_dasar:,.0f} - estimasi {self.estimasi_hari} hari")
 
     def hitung_harga_setelah_diskon(self, is_member=False):
         if is_member:
@@ -41,7 +41,7 @@ class JenisLayanan:
     def dari_dict(cls, data):
         """Factory method: buat objek dari dictionary."""
         return cls(data["nama_layanan"], data["kategori"],
-                   data["harga_dasar"], data["estimasi_hari"])
+                data["harga_dasar"], data["estimasi_hari"])
 
     @classmethod
     def ubah_diskon_member(cls, diskon_baru):
@@ -56,9 +56,6 @@ class JenisLayanan:
         return kategori in JenisLayanan.kategori_valid
 
 
-# =====================================================================
-# ABSTRAKSI & INHERITANCE: Abstract class Desainer + 3 Subclass
-# =====================================================================
 class Desainer(ABC):
     """ABSTRACT BASE CLASS (superclass) desainer grafis di Desaignkan_id.
 
@@ -72,14 +69,13 @@ class Desainer(ABC):
     level_default = "Junior"
 
     def __init__(self, nama, spesialisasi, rating_awal=5.0):
-        self._nama = nama                     # protected
-        self._spesialisasi = spesialisasi     # protected
-        self._level = Desainer.level_default  # protected
-        self.__rating = rating_awal           # private
-        self.__pesanan_selesai = 0            # private
+        self._nama = nama
+        self._spesialisasi = spesialisasi
+        self._level = Desainer.level_default
+        self.__rating = rating_awal
+        self.__pesanan_selesai = 0
         Desainer.total_desainer += 1
 
-    # ---------- Property ----------
     @property
     def nama(self):
         return self._nama
@@ -104,7 +100,6 @@ class Desainer(ABC):
     def pesanan_selesai(self):
         return self.__pesanan_selesai
 
-    # ---------- Abstract method (WAJIB diimplementasikan subclass) ----------
     @abstractmethod
     def hitung_biaya_tambahan(self, harga_layanan):
         """Biaya tambahan khusus tiap jenis desainer."""
@@ -117,7 +112,6 @@ class Desainer(ABC):
     def kerjakan_draft(self, nama_layanan):
         """Langkah awal pengerjaan draft, berbeda tiap spesialisasi."""
 
-    # ---------- Method konkret (dipakai bersama semua subclass) ----------
     def tambah_pesanan_selesai(self):
         self.__pesanan_selesai += 1
 
@@ -127,11 +121,10 @@ class Desainer(ABC):
 
     def tampilkan_profil(self):
         print(f"Desainer: {self._nama} | Spesialisasi: {self._spesialisasi} | "
-              f"Level: {self._level} | Rating: {self.__rating} | "
-              f"Selesai: {self.__pesanan_selesai}")
+            f"Level: {self._level} | Rating: {self.__rating} | "
+            f"Selesai: {self.__pesanan_selesai}")
         print(f"   -> {self.deskripsi_keahlian()}")
 
-    # ---------- Operator overloading ----------
     def __str__(self):
         return f"{self._nama} ({self._spesialisasi}, rating {self.__rating})"
 
@@ -186,7 +179,6 @@ class DesainerIlustrator(Desainer):
         self.gaya_ilustrasi = gaya_ilustrasi
 
     def hitung_biaya_tambahan(self, harga_layanan):
-        # biaya kompleksitas = 10% dari harga layanan
         return harga_layanan * DesainerIlustrator.PERSEN_KOMPLEKSITAS
 
     def deskripsi_keahlian(self):
@@ -211,7 +203,6 @@ class DesainerUIUX(Desainer):
         self.tools = tools
 
     def hitung_biaya_tambahan(self, harga_layanan):
-        # biaya tetap untuk prototype interaktif
         return DesainerUIUX.BIAYA_PROTOTYPE
 
     def deskripsi_keahlian(self):
@@ -223,12 +214,9 @@ class DesainerUIUX(Desainer):
     def sapa_tim(self):
         """Contoh subclass mengakses atribut protected milik superclass."""
         print(f"Halo, saya {self._nama}, spesialis {self._spesialisasi} "
-              f"(level {self._level}).")
+            f"(level {self._level}).")
 
 
-# =====================================================================
-# RELASI UML
-# =====================================================================
 class Pelanggan:
     """Pelanggan jasa desain. Berelasi ASOSIASI dengan Pesanan."""
     total_pelanggan = 0
@@ -249,11 +237,11 @@ class TimDesain:
 
     def __init__(self, nama_tim):
         self.nama_tim = nama_tim
-        self.__anggota = []   # berisi objek Desainer yang dibuat dari luar
+        self.__anggota = []
 
     @property
     def anggota(self):
-        return list(self.__anggota)   # salinan, agar list asli aman
+        return list(self.__anggota)
 
     def __len__(self):
         """Operator overloading: len(tim) = jumlah anggota."""
@@ -281,7 +269,7 @@ class TimDesain:
 
     def tampilkan_tim(self):
         print(f"=== {self.nama_tim} ({len(self.__anggota)} anggota, "
-              f"rata-rata rating {self.rata_rata_rating():.2f}) ===")
+            f"rata-rata rating {self.rata_rata_rating():.2f}) ===")
         for d in self.__anggota:
             d.tampilkan_profil()
 
@@ -327,10 +315,6 @@ class Revisi:
         self.catatan = catatan
 
 
-# =====================================================================
-# DUCK TYPING: dua class TIDAK berhubungan (tanpa pewarisan), sama-sama
-# punya method kirim(penerima, pesan)
-# =====================================================================
 class NotifikasiEmail:
     def kirim(self, penerima, pesan):
         print(f"[EMAIL] Kepada {penerima}: {pesan}")
@@ -363,12 +347,10 @@ class Pesanan:
 
     def __init__(self, id_pesanan, pelanggan, layanan, desainer, notifikasi=None):
         self.id_pesanan = id_pesanan
-        # --- Asosiasi ---
         self.pelanggan = pelanggan
         self.layanan = layanan
         self.desainer = desainer
-        self.__notifikasi = notifikasi   # dependency injection (opsional)
-        # --- Komposisi: part dibuat DI DALAM whole ---
+        self.__notifikasi = notifikasi
         self.__rincian = RincianBiaya()
         self.__daftar_revisi = []
         self.__status = "Menunggu"
@@ -398,19 +380,18 @@ class Pesanan:
         if self.__status in ("Selesai", "Dibatalkan"):
             print(f"[GAGAL] Pesanan {self.id_pesanan} sudah {self.__status}, revisi ditolak.")
             return
-        revisi = Revisi(len(self.__daftar_revisi) + 1, catatan)  # dibuat di dalam Pesanan
+        revisi = Revisi(len(self.__daftar_revisi) + 1, catatan)
         self.__daftar_revisi.append(revisi)
         print(f"[OK] Revisi #{revisi.nomor} untuk {self.id_pesanan}: {catatan}")
 
     def proses_pesanan(self):
         harga_setelah = self.layanan.hitung_harga_setelah_diskon(self.pelanggan.is_member)
         potongan = self.layanan.harga_dasar - harga_setelah
-        # Polymorphism: method yang dipanggil tergantung tipe subclass desainer
         biaya_desainer = self.desainer.hitung_biaya_tambahan(harga_setelah)
         self.__rincian.hitung(self.layanan.harga_dasar, potongan,
-                              biaya_desainer, Pesanan.ongkos_admin)
+                            biaya_desainer, Pesanan.ongkos_admin)
         self.status = "Diproses"
-        self.desainer.jalankan(self.layanan)   # method konkret milik abstract class
+        self.desainer.jalankan(self.layanan)
         print(f"Pesanan {self.id_pesanan} diproses. Total: Rp{self.total_bayar:,.0f}")
 
     def selesaikan_pesanan(self):
@@ -452,7 +433,6 @@ class Pesanan:
 if __name__ == "__main__":
     print("=== DEMO SISTEM MANAJEMEN PESANAN - DESAIGNKAN_ID ===")
 
-    # ------------------------------------------------------------------
     print("\n--- JenisLayanan ---")
     layanan_logo = JenisLayanan("Desain Logo", "Logo", 250000, 3)
     layanan_banner = JenisLayanan.dari_dict({
@@ -467,7 +447,6 @@ if __name__ == "__main__":
     print("Validasi kategori 'Fotografi':", JenisLayanan.validasi_kategori("Fotografi"))
     JenisLayanan.ubah_diskon_member(0.15)
 
-    # ------------------------------------------------------------------
     print("\n--- ABSTRAKSI: Abstract Base Class Desainer ---")
     print("[Bukti] Abstract class tidak bisa diinstansiasi:")
     try:
@@ -500,19 +479,16 @@ if __name__ == "__main__":
         print("[GAGAL] __rating bersifat private, harus lewat property .rating =",
               desainer_dea.rating)
 
-    # ------------------------------------------------------------------
     print("\n--- POLIMORFISME via PEWARISAN (satu loop, tiga subclass) ---")
     for d in semua_desainer:
         d.jalankan(layanan_logo)
         print(f"   {d.deskripsi_keahlian()}")
         print(f"   Biaya tambahan (harga Rp200.000): Rp{d.hitung_biaya_tambahan(200000):,.0f}")
 
-    # ------------------------------------------------------------------
     print("\n--- DUCK TYPING (class tidak berhubungan, satu fungsi yang sama) ---")
     for saluran in (NotifikasiEmail(), NotifikasiWhatsApp()):
         kirim_pengumuman(saluran, "Yusuf", "Promo diskon member 15% sampai akhir bulan!")
 
-    # ------------------------------------------------------------------
     print("\n--- OPERATOR OVERLOADING (__str__, __lt__, __gt__, __len__) ---")
     print("str(desainer_dea)   :", desainer_dea)
     print("Bima < Citra        :", desainer_bima < desainer_citra)
@@ -522,13 +498,12 @@ if __name__ == "__main__":
         print("  -", d)
     print("Desainer terbaik    :", max(semua_desainer))
 
-    # ------------------------------------------------------------------
     print("\n--- AGREGASI: TimDesain o-- Desainer ---")
     tim = TimDesain("Tim Kreatif Alpha")
     for d in semua_desainer:
         tim.tambah_anggota(d)
-    tim.tambah_anggota(desainer_dea)       # duplikat -> ditolak
-    tim.tambah_anggota("bukan desainer")   # tipe salah -> ditolak
+    tim.tambah_anggota(desainer_dea)
+    tim.tambah_anggota("bukan desainer")
     print("Jumlah anggota (len(tim)):", len(tim))
     tim.tampilkan_tim()
     tim.keluarkan_anggota(desainer_bima)
@@ -537,7 +512,6 @@ if __name__ == "__main__":
     print("Desainer tetap ada setelah tim bubar:")
     desainer_dea.tampilkan_profil()
 
-    # ------------------------------------------------------------------
     print("\n--- ASOSIASI: Pesanan -> Pelanggan, JenisLayanan, Desainer ---")
     yusuf = Pelanggan("Yusuf", is_member=True)
     nadia = Pelanggan("Nadia")
@@ -545,15 +519,13 @@ if __name__ == "__main__":
     yusuf.tampilkan_info()
     nadia.tampilkan_info()
 
-    # notifikasi di-inject dari luar (SOLID: Dependency Inversion)
     pesanan_1 = Pesanan("ORD001", yusuf, layanan_logo, desainer_dea,
                         notifikasi=NotifikasiEmail())
     pesanan_2 = Pesanan.dari_data({"id_pesanan": "ORD002"}, nadia,
-                                  layanan_banner, desainer_bima,
-                                  notifikasi=NotifikasiWhatsApp())
+                                layanan_banner, desainer_bima,
+                                notifikasi=NotifikasiWhatsApp())
     pesanan_3 = Pesanan("ORD003", raka, layanan_uiux, desainer_citra)
 
-    # ------------------------------------------------------------------
     print("\n--- KOMPOSISI: Pesanan *-- RincianBiaya & Revisi ---")
     pesanan_1.tambah_revisi("Warna logo dibuat lebih gelap")
     pesanan_1.tambah_revisi("Ganti font nama brand")
@@ -562,20 +534,17 @@ if __name__ == "__main__":
         p.selesaikan_pesanan()
         p.tampilkan_struk()
         print()
-    pesanan_1.tambah_revisi("Revisi setelah selesai")   # ditolak
+    pesanan_1.tambah_revisi("Revisi setelah selesai")
     print("Total pesanan tercatat:", Pesanan.total_pesanan)
     print("Total pelanggan terdaftar:", Pelanggan.total_pelanggan)
     print("Validasi ID 'ORD001':", Pesanan.validasi_id_pesanan("ORD001"))
     print("Validasi ID 'X001':", Pesanan.validasi_id_pesanan("X001"))
 
-    # Pelanggan & Desainer (asosiasi) tidak ikut hilang saat Pesanan dihapus,
-    # sedangkan RincianBiaya & Revisi (komposisi) ikut hilang bersama Pesanan.
     del pesanan_3
     print("\nSetelah pesanan_3 dihapus, pelanggan & desainer tetap ada:")
     raka.tampilkan_info()
     desainer_citra.tampilkan_profil()
 
-    # ------------------------------------------------------------------
     print("\n--- Pengujian Getter & Setter ---")
     print("Harga awal logo:", layanan_logo.harga_dasar)
     layanan_logo.harga_dasar = 300000

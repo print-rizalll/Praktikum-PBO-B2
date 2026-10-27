@@ -6,11 +6,13 @@ jasa desain grafis pada usaha kreatif fiktif **Desaignkan_id**, berdasarkan jeni
 sesuai spesialisasinya, lalu biaya dihitung otomatis dan struk ditampilkan.
 
 Materi yang diterapkan:
-- Modul 1 — Class & Object
-- Modul 2 — Atribut (instance & kelas) dan Method (instance, class, static)
-- Modul 3 — Encapsulation (public, protected, private) & Property (getter/setter)
-- Modul 4 — Relasi UML dan Inheritance
-- Modul 5 — **Abstraksi** (Abstract Base Class) dan **Polimorfisme**
+- Modul 1 — Pengantar OOP, Class, dan Object
+- Modul 2 — Atribut dan Method
+- Modul 3 — Encapsulation
+- Modul 4 — Encapsulation
+- Modul 5 — Inheritance
+- Modul 6 — Polimorfisme & Abstraksi
+- Modul 7 — SOLID
 
 ---
 
